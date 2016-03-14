@@ -26,7 +26,10 @@ while True:
         # Fill in end
         # Send one HTTP header line into socket
         # Fill in start
-        response = "HTTP/1.1 200 OK\nContent-Type:text/html\n\n"
+        import datetime
+        GMT_FORMAT = '%a, %d %b %Y %H:%M:%S GMT'
+        date_now = datetime.datetime.utcnow().strftime(GMT_FORMAT)
+        response = "HTTP/1.1 200 OK\nContent-Type:text/html\nDate: "+date_now+"\n\n"
         connectionSocket.sendall(response)
         # Fill in end
         # Send the content of the requested file to the client
@@ -37,7 +40,10 @@ while True:
     except IOError:
         # Send response message for file not found
         # Fill in start
-        response = "HTTP/1.1 404 Not Found"
+        import datetime
+        GMT_FORMAT = '%a, %d %b %Y %H:%M:%S GMT'
+        date_now = datetime.datetime.utcnow().strftime(GMT_FORMAT)
+        response = "HTTP/1.1 404 Not Found\nDate: "+ date_now
         connectionSocket.sendall(response)
         # Fill in end
         # Close client socket
@@ -45,7 +51,10 @@ while True:
         connectionSocket.close()
         # Fill in end
     except:
-        response = "HTTP/1.1 404 Not Found"
+        import datetime
+        GMT_FORMAT = '%a, %d %b %Y %H:%M:%S GMT'
+        date_now = datetime.datetime.utcnow().strftime(GMT_FORMAT)
+        response = "HTTP/1.1 404 Not Found\nDate: "+ date_now
         connectionSocket.sendall(response)
         connectionSocket.close()
 serverSocket.close()

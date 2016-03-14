@@ -7,7 +7,7 @@ clientSock.connect(('localhost', 5277))
 import time
 
 time.sleep(2)
-clientSock.send('GET /in HTTP/1.1\nHost: localhost:5277')
+clientSock.send('GET /index.html HTTP/1.1\nHost: localhost:5277')
 while True:
     buf = (clientSock.recv(1024))
     if len(buf):
